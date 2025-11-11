@@ -59,12 +59,10 @@ print(score)
 game_over = False
 while not game_over:
     screen.update()
-    for index in range (len(snake_segments)-1, -1, -1):
-        if index == 0:
-            snake_segments[index].forward(20)
-        else:
-            new_position = snake_segments[index-1].position()
-            snake_segments[index].setposition(new_position)
+    for index in range (len(snake_segments)-1, 0, -1):
+        new_position = snake_segments[index-1].position()
+        snake_segments[index].setposition(new_position)
+    snake_segments[0].forward(20)
 
     # Control direction
     screen.listen()
@@ -92,6 +90,6 @@ while not game_over:
         speed_factor = 1
     else:
         speed_factor = score // 5
-    time.sleep(0.2/speed_factor)
+    time.sleep(0.1/speed_factor)
 
 screen.exitonclick()
